@@ -1,2 +1,2 @@
 # react-stopwatch
-Created with CodeSandbox
+Latihan membuat stopwatch menggunakan reactjs
