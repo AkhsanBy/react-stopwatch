@@ -5,6 +5,7 @@ export default function App() {
   const [isStart, setIsStart] = useState(false);
   const [isPause, setIsPause] = useState(false);
   const [textTimer, setTextTimer] = useState([]);
+  const [isLapClicked, setIsLapClicked] = useState(false);
   const currentTimer = useRef(null);
 
   let startTimer = () => {
@@ -32,7 +33,8 @@ export default function App() {
   };
 
   let lapTimer = () => {
-    setTextTimer(currentTimer.current);
+    setIsLapClicked(true);
+    setTextTimer([...textTimer, timer]);
   };
 
   let stopTimer = () => {
@@ -40,11 +42,18 @@ export default function App() {
     setIsStart(false);
     clearInterval(currentTimer.current);
     setTimer(0);
+    setTextTimer([]);
   };
 
   const formatTimer = () => {
     var date = new Date(0);
     date.setSeconds(timer); // specify value for SECONDS here
+    return date.toISOString().substr(11, 8);
+  };
+
+  const formatTextTimer = (textTime) => {
+    var date = new Date(0);
+    date.setSeconds(textTime); // specify value for SECONDS here
     return date.toISOString().substr(11, 8);
   };
 
@@ -65,7 +74,11 @@ export default function App() {
               </button>
             ) : isPause ? (
               <div className="btn-group">
-                <button type="button" class="btn btn-info" onClick={pauseTimer}>
+                <button
+                  type="button"
+                  className="btn btn-info"
+                  onClick={pauseTimer}
+                >
                   Pause
                 </button>
                 <button
@@ -94,6 +107,13 @@ export default function App() {
                 </button>
               </div>
             )}
+          </div>
+          <div>
+            {isLapClicked
+              ? textTimer.map((textTime, index) => {
+                  return <h3 key={index}>{formatTextTimer(textTime)}</h3>;
+                })
+              : ""}
           </div>
         </div>
       </div>
