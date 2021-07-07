@@ -58,7 +58,7 @@ export default function App() {
             {!isStart && !isPause ? (
               <button
                 type="button"
-                class="btn btn-primary"
+                className="btn btn-primary"
                 onClick={startTimer}
               >
                 Start
@@ -70,7 +70,7 @@ export default function App() {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={lapTimer}
                 >
                   Lap
@@ -80,14 +80,14 @@ export default function App() {
               <div className="btn-group">
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   onClick={resumeTimer}
                 >
                   Resume
                 </button>
                 <button
                   type="button"
-                  class="btn btn-danger"
+                  className="btn btn-danger"
                   onClick={stopTimer}
                 >
                   Stop
